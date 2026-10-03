@@ -1,0 +1,14 @@
+# The Python environment the C++ engine (cpp/) is bit-identical to. Parity is defined against
+# exactly these versions on macOS arm64 (Apple M2, macOS 26.6, Apple clang 17): numpy's summation
+# order, scipy's graph / KD-tree code, trimesh's loaders and Pillow's decoders all affect the bits.
+# Upgrading any of them can change the Python results; re-run tests/test_cpp_parity.py after.
+numpy==2.2.6
+scipy==1.15.0
+numba==0.67.0
+llvmlite==0.49.0
+trimesh==5.1.0
+pillow==12.3.0
+DracoPy==2.1.0
+networkx==3.7
+gradio==6.28.0
+pytest==9.1.1

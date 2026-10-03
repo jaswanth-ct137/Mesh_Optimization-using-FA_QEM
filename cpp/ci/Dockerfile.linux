@@ -1,0 +1,4 @@
+# Linux build environment for the portable FA-QEM engine (used by cpp/ci/linux_check.sh)
+FROM ubuntu:24.04
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      cmake ninja-build g++ clang python3 ca-certificates curl git pkg-config && rm -rf /var/lib/apt/lists/*

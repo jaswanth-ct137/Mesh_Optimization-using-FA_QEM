@@ -1,0 +1,30 @@
+{
+ "hunyuan_doll": {
+  "input_faces": 627666,
+  "output_faces": 12552,
+  "hausdorff_pct": 0.1168,
+  "time_simplify_s": 5.51,
+  "time_bake_s": 1.94
+ },
+ "boots": {
+  "input_faces": 129094,
+  "output_faces": 12908,
+  "hausdorff_pct": 0.1804,
+  "time_simplify_s": 0.83,
+  "time_bake_s": 2.28
+ },
+ "versa": {
+  "input_faces": 93126,
+  "output_faces": 4656,
+  "hausdorff_pct": 1.3925,
+  "time_simplify_s": 0.56,
+  "time_bake_s": 2.68
+ },
+ "stl_scan": {
+  "input_faces": 11420,
+  "output_faces": 1142,
+  "hausdorff_pct": 0.3914,
+  "time_simplify_s": 0.07,
+  "time_bake_s": 0.26
+ }
+}

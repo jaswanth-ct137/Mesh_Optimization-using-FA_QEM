@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# C++ build outputs and fetched deps
+build/
+build-*/
+
+# macOS / editor
+.DS_Store
+imgui.ini
+
+# Archives and scratch copies
+*.zip
+checking copy/
+compare/

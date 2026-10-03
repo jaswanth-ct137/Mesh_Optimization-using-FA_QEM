@@ -1,0 +1,41 @@
+# Builds the portable C++ engine on macOS, Linux and Windows and checks every result against the
+# golden digests recorded on macOS (cpp/tests/golden_portable.json). Any differing bit fails the job.
+name: portable-identity
+on: [push, workflow_dispatch]
+jobs:
+  build-and-check:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: macos-14, cc: clang, cxx: clang++}
+          - {os: ubuntu-24.04, cc: gcc, cxx: g++}
+          - {os: ubuntu-24.04, cc: clang, cxx: clang++}
+          - {os: windows-2022, cc: clang-cl, cxx: clang-cl}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - if: runner.os == 'macOS'
+        run: brew install ninja
+      - if: runner.os == 'Windows'
+        run: choco install ninja -y
+      - name: dependencies (pinned, from source)
+        shell: bash
+        run: |
+          cmake -S cpp/deps -B build-deps -G Ninja -Wno-dev -DCMAKE_C_COMPILER=${{ matrix.cc }} -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          cmake --build build-deps
+      - name: engine
+        shell: bash
+        run: |
+          cmake -S cpp -B build -G Ninja -DFAQEM_DEPS=$PWD/build-deps/install -DFAQEM_PYTHON_MODULE=OFF \
+                -DCMAKE_C_COMPILER=${{ matrix.cc }} -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          cmake --build build
+      - name: identical to the macOS golden digests
+        shell: bash
+        run: python tools/portable_golden.py --faqem build/faqem$([ "$RUNNER_OS" = Windows ] && echo .exe)

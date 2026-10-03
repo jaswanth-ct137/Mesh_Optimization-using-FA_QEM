@@ -1,0 +1,6 @@
+# FA-QEM runtime dependencies (install into the TripoSG environment)
+numpy>=1.26
+scipy>=1.11
+numba>=0.60
+trimesh>=4.0
+pillow>=10.0

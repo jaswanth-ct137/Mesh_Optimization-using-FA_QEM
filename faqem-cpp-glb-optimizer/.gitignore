@@ -1,0 +1,4 @@
+build/
+build-deps/
+*.glb
+!tests/data/*.glb

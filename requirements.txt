@@ -1,0 +1,10 @@
+numpy>=1.26
+scipy>=1.11
+numba>=0.60
+trimesh>=4.0
+pillow>=10.0
+networkx>=3.0
+DracoPy>=1.4        # Draco-compressed GLB support
+gradio>=5.0         # web app
+pytest>=8.0         # tests
+fast-simplification>=0.1   # optional: reference baseline used in the benchmark only
