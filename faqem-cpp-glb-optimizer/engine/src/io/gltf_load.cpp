@@ -24,7 +24,7 @@ std::vector<uint8_t> read_file(const std::string& path) {
 namespace {
 
 std::string dirname(const std::string& p) {
-    size_t s = p.find_last_of('/');
+    size_t s = p.find_last_of("/\\");
     return s == std::string::npos ? std::string(".") : p.substr(0, s);
 }
 

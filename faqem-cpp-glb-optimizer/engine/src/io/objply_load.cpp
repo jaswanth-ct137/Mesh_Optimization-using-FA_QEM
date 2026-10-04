@@ -193,7 +193,7 @@ VecI faces_setter(const VecI& f, int width) {
 }
 
 std::string dirname(const std::string& p) {
-    size_t s = p.find_last_of('/');
+    size_t s = p.find_last_of("/\\");
     return s == std::string::npos ? std::string(".") : p.substr(0, s);
 }
 

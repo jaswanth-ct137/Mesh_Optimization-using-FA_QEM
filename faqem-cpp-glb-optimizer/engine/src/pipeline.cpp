@@ -41,7 +41,7 @@ static std::string thousands(i64 v) {
 static void mkdirs(const std::string& d) { std::filesystem::create_directories(d); }
 
 static std::string stem(const std::string& path) {
-    size_t s = path.find_last_of('/');
+    size_t s = path.find_last_of("/\\");
     std::string b = s == std::string::npos ? path : path.substr(s + 1);
     size_t d = b.find_last_of('.');
     return (d == std::string::npos || d == 0) ? b : b.substr(0, d);
