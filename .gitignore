@@ -14,5 +14,6 @@ imgui.ini
 
 # Archives and scratch copies
 *.zip
-checking copy/
+checking copy/*
+!checking copy/*.glb
 compare/

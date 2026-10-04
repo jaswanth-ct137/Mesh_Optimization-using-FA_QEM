@@ -52,6 +52,7 @@ ExternalProject_Add(libjpeg-turbo
 
 ExternalProject_Add(libwebp
   URL https://github.com/webmproject/libwebp/archive/refs/tags/v1.6.0.tar.gz
+  PATCH_COMMAND ${CMAKE_COMMAND} -DFILE=<SOURCE_DIR>/cmake/cpu.cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/patch_libwebp.cmake
   CMAKE_ARGS ${COMMON} -DWEBP_ENABLE_SIMD=OFF -DWEBP_BUILD_ANIM_UTILS=OFF -DWEBP_BUILD_CWEBP=OFF
              -DWEBP_BUILD_DWEBP=OFF -DWEBP_BUILD_GIF2WEBP=OFF -DWEBP_BUILD_IMG2WEBP=OFF
              -DWEBP_BUILD_VWEBP=OFF -DWEBP_BUILD_WEBPINFO=OFF -DWEBP_BUILD_WEBPMUX=OFF
