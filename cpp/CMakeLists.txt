@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
+# Default to Release before project(): for clang-cl/MSVC, project() otherwise sets Debug, which
+# cannot link against the Release libraries from cpp/deps.
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "")
+endif()
 project(faqem_cpp C CXX)
 
 # Two build modes:
@@ -21,9 +26,6 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
-endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Exactness: no FMA contraction, no fast-math, pow() never folded. clang-cl takes clang options
